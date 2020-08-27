@@ -142,7 +142,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         get_country_names()
 
 
