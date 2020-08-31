@@ -1,8 +1,6 @@
 package com.log.worldholidays
 
 
-
-
 class DataSingleton {
 
     private var instance: DataSingleton? = null
