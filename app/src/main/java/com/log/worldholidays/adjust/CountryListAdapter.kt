@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.log.worldholidays.MainActivity.Companion.MAP
+import com.log.worldholidays.view.MainActivity.Companion.MAP
 import com.log.worldholidays.R
 import kotlinx.android.synthetic.main.country_list_container.view.*
 

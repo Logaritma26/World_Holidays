@@ -1,13 +1,15 @@
-package com.log.worldholidays
+package com.log.worldholidays.view
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.log.worldholidays.adjust.AddItem
-import com.log.worldholidays.adjust.CountryNames
-import com.log.worldholidays.adjust.JsonPlaceHolder
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.log.worldholidays.R
+import com.log.worldholidays.model.ModelCountry
+import com.log.worldholidays.services.CountryApi
+import com.log.worldholidays.fragmetns.home.Homepage
+import com.log.worldholidays.fragmetns.settings.Settings
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,7 +19,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    fun fill(array: ArrayList<String>) {
+    fun fill(): ArrayList<String> {
+
+        var array : ArrayList<String> = ArrayList()
 
         array.add("AD")
         array.add("AL")
@@ -121,9 +125,14 @@ class MainActivity : AppCompatActivity() {
         array.add("ZA")
         array.add("ZW")
 
+        //DataSingleton.COUNTRY_CODES = array
+
         for (i in 0 until COUNTRY_CODES.size){
             MAP.put(COUNTRY_CODES[i], "empty")
         }
+
+        return array
+
     }
 
     companion object {
@@ -134,18 +143,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //fill(COUNTRY_CODES)
 
-        fill(COUNTRY_CODES)
 
-        floating_action_button.setOnClickListener {
-            val intent = Intent(this@MainActivity, AddItem::class.java)
-            startActivity(intent)
-        }
+        //get_country_names()
 
-        get_country_names()
+        bottom_navigationView_stuff()
 
 
     }
+/*
 
     private fun get_country_names() {
 
@@ -154,24 +161,24 @@ class MainActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        val holder = retrofit.create(JsonPlaceHolder::class.java)
+        val holder = retrofit.create(CountryApi::class.java)
 
         for (i in 0 until COUNTRY_CODES.size){
             val code : String = COUNTRY_CODES[i]
 
             val url : String = "/rest/v2/alpha/$code?fields=name"
-            holder.get_text(url)?.enqueue(object : Callback<CountryNames?> {
+            holder.get_text(url)?.enqueue(object : Callback<ModelCountry?> {
                 override fun onResponse(
-                    call: Call<CountryNames?>?,
-                    response: Response<CountryNames?>?
+                    call: Call<ModelCountry?>?,
+                    response: Response<ModelCountry?>?,
                 ) {
-                    val info : CountryNames? = response?.body()
+                    val info: ModelCountry? = response?.body()
                     info?.get_name()?.let {
                         MAP[COUNTRY_CODES[i]] = it
                     }
                 }
 
-                override fun onFailure(call: Call<CountryNames?>?, t: Throwable?) {
+                override fun onFailure(call: Call<ModelCountry?>?, t: Throwable?) {
                     Log.d("get country names", "onFailure: " + (t?.message ?: String))
                 }
             })
@@ -179,6 +186,32 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+*/
+
+    //   Bottom Navigation View
+    private fun bottom_navigationView_stuff() {
+        var bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bar_bottom)
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(navListener)
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, SearchActivity()).commit()
+        bottomNavigationView.setSelectedItemId(R.id.search)
+    }
+
+    private val navListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            var selected_fragment: Fragment? = null
+            when (item.getItemId()) {
+                R.id.homepage -> selected_fragment = Homepage()
+                R.id.search -> selected_fragment = SearchActivity()
+                R.id.settings -> selected_fragment = Settings()
+            }
+            if (selected_fragment != null) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    selected_fragment).commit()
+            }
+            true
+        }
 
 
 }

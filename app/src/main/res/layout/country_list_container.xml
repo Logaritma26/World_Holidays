@@ -1,60 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
-    android:layout_marginTop="12dp"
+    android:layout_marginTop="2dp"
     android:layout_marginEnd="4dp"
-    android:layout_marginBottom="12dp"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp"
-    android:animateLayoutChanges="true">
+    android:layout_marginBottom="2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <ImageView
+            android:id="@+id/image_flag"
+            android:layout_width="125dp"
+            android:layout_height="75dp"
+            android:layout_margin="4dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <ImageView
-        android:id="@+id/image_flag"
-        android:layout_width="64dp"
-        android:layout_height="38.4dp"
-        android:scaleType="centerCrop"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/add_button"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/country_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/averia_sans_libre_light"
+            android:gravity="start"
+            android:maxLines="1"
+            android:text="United States of Americaaaasdfasdfadfasdfaasdfasdf"
+            android:textColor="@color/text_color"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toStartOf="@+id/add_button"
+            app:layout_constraintStart_toEndOf="@+id/image_flag"
+            app:layout_constraintTop_toTopOf="@+id/image_flag" />
 
-    <TextView
-        android:id="@+id/country_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/averia_sans_libre_light"
-        android:gravity="center"
-        android:maxWidth="180dp"
-        android:maxHeight="52dp"
-        android:text="United States of America"
-        android:textColor="@color/text_color"
-        android:textSize="23sp"
-        app:layout_constraintBottom_toBottomOf="@+id/image_flag"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_flag"
-        app:layout_constraintTop_toTopOf="@+id/image_flag" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/averia_sans_libre_light"
+            android:gravity="start"
+            android:maxLines="1"
+            android:text="asdfaf"
+            android:textColor="@color/text_color"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="@+id/country_name"
+            app:layout_constraintStart_toStartOf="@+id/country_name"
+            app:layout_constraintTop_toBottomOf="@+id/country_name" />
 
+        <ImageButton
+            android:id="@+id/add_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:src="@drawable/favorite_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/add_button"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:visibility="gone"
-        android:adjustViewBounds="true"
-        android:background="@drawable/add_button_background"
-        android:clickable="true"
-        android:focusable="true"
-        android:foreground="?attr/selectableItemBackground"
-        android:gravity="center"
-        android:src="@drawable/add_vector"
-        app:layout_constraintBottom_toBottomOf="@+id/image_flag"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image_flag" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -1,22 +1,9 @@
 package com.log.worldholidays
 
 
-class DataSingleton {
+object DataSingleton: GeneralSetAbstract() {
 
-    private var instance: DataSingleton? = null
-
-    private fun Singleton() {}
-
-    fun getInstance(): DataSingleton? {
-        if (instance == null) {
-            synchronized(DataSingleton::class.java) {
-                if (instance == null) {
-                    instance = DataSingleton()
-                }
-            }
-        }
-        return instance
-    }
+val COUNTRY_CODES : ArrayList<String> = fill_list()
 
 
 
