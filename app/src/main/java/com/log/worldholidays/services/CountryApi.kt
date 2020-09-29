@@ -1,15 +1,13 @@
 package com.log.worldholidays.services
 
-import com.log.worldholidays.model.ModelCountry
+import com.log.worldholidays.model.CountryDB
 import io.reactivex.rxjava3.core.Single
-import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Url
 
 
 interface CountryApi {
 
-    @GET
-    fun getCountries(@Url url : String): Single<List<ModelCountry>>
+    @GET("all?fields=name;capital;region;nativeName;population;area;flag;alpha2Code;alpha3Code;borders")
+    fun getCountries(): Single<List<CountryDB>>
 
 }

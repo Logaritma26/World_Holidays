@@ -1,60 +1,66 @@
 package com.log.worldholidays.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
+@Entity
+data class CountryDB(
 
-data class ModelCountry(
-
+    @ColumnInfo(name = "name")
     @SerializedName("name")
-    private val name: String?,
+    val name: String?,
 
+    @ColumnInfo(name = "flag")
     @SerializedName("flag")
-    private val flag: String?,
+    val flag: String?,
 
+    @ColumnInfo(name = "capital")
     @SerializedName("capital")
-    private val capital: String?,
+    val capital: String?,
 
+    @ColumnInfo(name = "population")
     @SerializedName("population")
-    private val population: String?,
+    var population: String?,
 
+    @ColumnInfo(name = "area")
     @SerializedName("area")
-    private val area: String?,
+    var area: String?,
 
+    @ColumnInfo(name = "nativeName")
     @SerializedName("nativeName")
-    private val nativeName: String?,
+    val nativeName: String?,
 
+    @ColumnInfo(name = "region")
     @SerializedName("region")
-    private val region: String?,
-) {
+    val region: String?,
 
-    fun get_name(): String? {
-        return name
-    }
+    @ColumnInfo(name = "alpha2Code")
+    @SerializedName("alpha2Code")
+    val alpha2Code: String?,
 
-    fun get_flag(): String? {
-        return flag
-    }
+    @ColumnInfo(name = "alpha3Code")
+    @SerializedName("alpha3Code")
+    val alpha3Code: String?,
 
-    fun get_capital(): String? {
-        return capital
-    }
+    @ColumnInfo(name = "borders")
+    @SerializedName("borders")
+    val borders: ArrayList<String>?,
 
-    fun get_population(): String? {
-        return population
-    }
+    @ColumnInfo(name = "favorite")
+    var favorite: Boolean = false,
 
-    fun get_area(): String? {
-        return area
-    }
+    ) {
 
-    fun get_nativeName(): String? {
-        return nativeName
-    }
 
-    fun get_region(): String? {
-        return region
-    }
+    @PrimaryKey(autoGenerate = true)
+    var uuid: Int = 0
+
 
 }
+
+
+
 
 

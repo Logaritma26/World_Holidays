@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/searchActivity">
+
+    <fragment
+        android:id="@+id/searchActivity"
+        android:name="com.log.worldholidays.view.SearchActivity"
+        android:label="SearchActivity"
+        tools:layout="@layout/activity_search"/>
+
+    <fragment
+        android:id="@+id/homepage"
+        android:name="com.log.worldholidays.fragmetns.home.Homepage"
+        android:label="fragment_homepage"
+        tools:layout="@layout/fragment_homepage" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.log.worldholidays.fragmetns.settings.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+
+</navigation>

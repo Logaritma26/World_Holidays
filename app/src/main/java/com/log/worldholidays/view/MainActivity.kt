@@ -1,27 +1,26 @@
 package com.log.worldholidays.view
 
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.log.worldholidays.R
-import com.log.worldholidays.model.ModelCountry
-import com.log.worldholidays.services.CountryApi
 import com.log.worldholidays.fragmetns.home.Homepage
 import com.log.worldholidays.fragmetns.settings.Settings
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.log.worldholidays.util.IOnBackPressed
 
 
 class MainActivity : AppCompatActivity() {
 
     fun fill(): ArrayList<String> {
 
-        var array : ArrayList<String> = ArrayList()
+        var array: ArrayList<String> = ArrayList()
 
         array.add("AD")
         array.add("AL")
@@ -127,7 +126,7 @@ class MainActivity : AppCompatActivity() {
 
         //DataSingleton.COUNTRY_CODES = array
 
-        for (i in 0 until COUNTRY_CODES.size){
+        for (i in 0 until COUNTRY_CODES.size) {
             MAP.put(COUNTRY_CODES[i], "empty")
         }
 
@@ -191,14 +190,25 @@ class MainActivity : AppCompatActivity() {
 
     //   Bottom Navigation View
     private fun bottom_navigationView_stuff() {
-        var bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bar_bottom)
 
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bar_bottom)
+        val navController = findNavController(R.id.nav_host_fragment_container)
+
+        bottomNavigationView.setupWithNavController(navController)
+
+        /*var bottomNavigationView = findViewById<BottomNavigationView>(R.id.nav_bar_bottom)
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, SearchActivity()).commit()
-        bottomNavigationView.setSelectedItemId(R.id.search)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
+        NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.navController)
+
+        supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment_container, Homepage())
+            .commit()
+        bottomNavigationView.setSelectedItemId(R.id.homepage)*/
+
     }
 
-    private val navListener =
+    /*private val navListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
             var selected_fragment: Fragment? = null
             when (item.getItemId()) {
@@ -207,11 +217,26 @@ class MainActivity : AppCompatActivity() {
                 R.id.settings -> selected_fragment = Settings()
             }
             if (selected_fragment != null) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_container,
                     selected_fragment).commit()
             }
             true
         }
+*/
 
+
+
+/*
+    override fun onBackPressed() {
+
+        val fragment = this.supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container)
+
+        (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
+            if (it) {
+                Toast.makeText(this, "asdfasdfaf", Toast.LENGTH_SHORT).show()
+                super.onBackPressed()
+            }
+        }
+    }*/
 
 }
