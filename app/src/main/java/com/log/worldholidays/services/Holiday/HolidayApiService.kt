@@ -1,26 +1,23 @@
-package com.log.worldholidays.services
+package com.log.worldholidays.services.Holiday
 
-import com.log.worldholidays.model.CountryDB
+import com.log.worldholidays.model.HolidayDB
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class CountryApiService {
+class HolidayApiService {
 
-    private val BASE_URL = "https://restcountries.eu/rest/v2/"
+    private val BASE_URL = "https://date.nager.at/Api/v2/"
 
     private val api = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
         .build()
-        .create(CountryApi::class.java)
+        .create(HolidayApi::class.java)
 
-    fun getData(): Single<List<CountryDB>> {
-        return api.getCountries()
+    fun getHolidays(code: String, year: Int): Single<List<HolidayDB>> {
+        return api.getHolidays(code, year)
     }
-
-
-
 }

@@ -40,7 +40,7 @@ fun glide_image_xml(view: ImageView, url: String?) {
     view.download_from_url(url, placeholderProgressBar(view.context))
 }
 
-fun glide_image_from_viewModel(view: ImageView, url: String?) {
+fun glide_image(view: ImageView, url: String?) {
     view.download_from_url(url, placeholderProgressBar(view.context))
 }
 

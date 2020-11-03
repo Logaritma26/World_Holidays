@@ -1,36 +1,24 @@
 package com.log.worldholidays.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.animation.AnimationUtils
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.log.worldholidays.R
 import com.log.worldholidays.databinding.CountryListContainerBinding
 import com.log.worldholidays.model.CountryDB
-import com.log.worldholidays.viewmodel.CountrListViewModel
+import com.log.worldholidays.viewmodel.CountryListViewModel
+import com.log.worldholidays.viewmodel.CountryHolidaysViewModel
 import kotlinx.android.synthetic.main.country_list_container.view.*
 
 class CountryListAdapter(val country_list : ArrayList<CountryDB>,
-                         val viewModel : CountrListViewModel,
-                         val listener : AdapterBinder) : RecyclerView.Adapter<CountryListAdapter.ViewHolder>() {
+                         val viewModel : CountryListViewModel,
+                         val listener : AdapterBinder,
+                         val holidaysViewModel: CountryHolidaysViewModel) : RecyclerView.Adapter<CountryListAdapter.ViewHolder>() {
 
-    inner class ViewHolder(var view: CountryListContainerBinding) : RecyclerView.ViewHolder(view.root) {
 
-        /*init {
-            view.root.setOnClickListener(this)
-        }*/
-/*
-
-        override fun onClick(p0: View?) {
-            if (p0 != null) {
-                listener.onCountryClick(p0)
-            }
-        }
-*/
-
-    }
+    inner class ViewHolder(var view: CountryListContainerBinding) : RecyclerView.ViewHolder(view.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -42,21 +30,27 @@ class CountryListAdapter(val country_list : ArrayList<CountryDB>,
         holder.view.model = country_list[position]
         holder.view.adapterBinder = listener
 
+        holder.view.cardviewCountryList.setAnimation(AnimationUtils.loadAnimation(holder.view.cardviewCountryList.context, R.anim.fade_recycler_fast))
+
         if (country_list[position].favorite){
             holder.itemView.add_button.setImageResource(R.drawable.favorite_icon_pink)
+            holder.itemView.is_fav.text = "1"
         } else {
             holder.itemView.add_button.setImageResource(R.drawable.favorite_border)
+            holder.itemView.is_fav.text = "0"
         }
 
         holder.itemView.add_button.setOnClickListener{
             if (country_list[position].favorite){
                 country_list[position].favorite = false
-                viewModel.changeFav(country_list[position].uuid, false)
+                holder.itemView.is_fav.text = "0"
+                viewModel.changeFav(country_list[position].uuid, false, holidaysViewModel, country_list[position].alpha2Code)
                 holder.itemView.add_button.setImageResource(R.drawable.favorite_border)
 
             }else{
                 country_list[position].favorite = true
-                viewModel.changeFav(country_list[position].uuid, true)
+                holder.itemView.is_fav.text = "1"
+                viewModel.changeFav(country_list[position].uuid, true, holidaysViewModel, country_list[position].alpha2Code)
                 holder.itemView.add_button.setImageResource(R.drawable.favorite_icon_pink)
             }
         }
@@ -67,7 +61,7 @@ class CountryListAdapter(val country_list : ArrayList<CountryDB>,
         return country_list.size
     }
 
-    fun refresh_recycler(new_list : List<CountryDB>){
+    fun renew_data(new_list : List<CountryDB>){
         country_list.clear()
         country_list.addAll(new_list)
         notifyDataSetChanged()

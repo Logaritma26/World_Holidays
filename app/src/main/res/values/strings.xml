@@ -4,7 +4,7 @@
     <string name="search">Search</string>
     <string name="settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="error_text">Oopps! There is an error occured :/</string>
+    <string name="error_text">Oopps! There is an error occurred :/</string>
     <string name="country_flag">country flag</string>
     <string name="favorite_button">favorite button</string>
     <string name="select_region">Select Region</string>
@@ -14,4 +14,19 @@
     <string name="america">America</string>
     <string name="oceania">Oceania</string>
     <string name="error_image">error_image</string>
+    <string name="population">Population</string>
+    <string name="area">Area</string>
+    <string name="capital">Capital</string>
+    <string name="country_name">Country Name</string>
+    <string name="flag_image_of_country">Flag Image of Country</string>
+    <string name="icon">Icon</string>
+    <string name="borders">Borders</string>
+    <string name="more">More</string>
+    <string name="error_message_weekend">We are sorry, there may be weak connection or we don\'t have long weekend data for this country for now.</string>
+    <string name="error_message_holiday">We are sorry, there may be weak connection or we don\'t have holiday data for this country for now.</string>
+    <string name="details">details</string>
+    <string name="region_card">region card</string>
+    <string name="image">image</string>
+    <string name="sort">Sort :</string>
+    <string name="holidays">Holidays</string>
 </resources>

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#f4fffd</color>
-    <color name="colorPrimaryDark">#011936</color>
-    <color name="colorAccent">#ed254e</color>
+    <color name="colorPrimary">#FAFAFF</color>
+    <color name="colorPrimaryDark">#112281</color>
+    <color name="colorAccent">#9E4A45</color>
 
-    <color name="lightblue300">#4fc3f7</color>
+    <color name="white_q1">#FAF7F0</color>
+    <color name="stupid_white">#FAFAFF</color>
+
+    <color name="stupid_black">#030051</color>
+    <color name="lightblue300">#3F51B5</color>
 
     <color name="text_color">#212121</color>
 
+    <color name="teal_green">#48C89B</color>
+    <color name="white">#FFFFFF</color>
+    <color name="golden">#ffbf00</color>
+    <color name="han_purple">#6320ee</color>
+    <color name="emerald">#0cce6b</color>
 
 </resources>

@@ -1,34 +1,35 @@
-package com.log.worldholidays.services
+package com.log.worldholidays.services.Weekend
 
 import android.content.Context
 import androidx.room.*
-import com.log.worldholidays.model.CountryDB
+import com.log.worldholidays.model.WeekendDB
 import com.log.worldholidays.util.Converters
 
-@Database(entities = [CountryDB::class], version = 1, exportSchema = true)
+@Database(entities = [WeekendDB::class], version = 1, exportSchema = true)
 @TypeConverters(Converters::class)
-abstract class CountryDatabase : RoomDatabase() {
+abstract class WeekendDatabase : RoomDatabase() {
 
-    abstract fun countryDao() : CountryDao
+    abstract fun weekendDao(): WeekendDao
 
-    companion object {
+    companion object{
 
         @Volatile
-        private var instance: CountryDatabase? = null
+        private var instance: WeekendDatabase? = null
 
         private val lock = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(lock) {
+
             instance ?: startInstance(context).also {
                 instance = it
             }
         }
 
-
         private fun startInstance(context: Context) =
             Room.databaseBuilder(context.applicationContext,
-                CountryDatabase::class.java,
-                "countrydatabase").build()
+                WeekendDatabase::class.java,
+                "weekenddatabase").build()
 
     }
+
 }

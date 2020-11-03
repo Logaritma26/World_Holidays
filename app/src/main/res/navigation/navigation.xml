@@ -9,17 +9,108 @@
         android:id="@+id/searchActivity"
         android:name="com.log.worldholidays.view.SearchActivity"
         android:label="SearchActivity"
-        tools:layout="@layout/activity_search"/>
+        tools:layout="@layout/activity_search">
+
+        <action
+            android:id="@+id/action_searchActivity_to_countryListFragment"
+            app:destination="@id/countryListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/countryListFragment"
+        android:name="com.log.worldholidays.view.CountryListFragment"
+        android:label="fragment_country_list"
+        tools:layout="@layout/fragment_country_list">
+        <action
+            android:id="@+id/action_countryListFragment_to_countryDetails"
+            app:destination="@id/countryDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/homepage"
-        android:name="com.log.worldholidays.fragmetns.home.Homepage"
+        android:name="com.log.worldholidays.view.Homepage"
         android:label="fragment_homepage"
-        tools:layout="@layout/fragment_homepage" />
+        tools:layout="@layout/fragment_homepage">
+
+        <action
+            android:id="@+id/action_homepage_to_favoriteDetail"
+            app:destination="@id/favoriteDetail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteDetail"
+        android:name="com.log.worldholidays.view.FavoriteDetail"
+        android:label="fragment_favorite_detail"
+        tools:layout="@layout/fragment_favorite_detail">
+
+        <action
+            android:id="@+id/action_favoriteDetail_to_countryDetails"
+            app:destination="@id/countryDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/countryDetails"
+        android:name="com.log.worldholidays.view.CountryDetails"
+        android:label="fragment_country_details"
+        tools:layout="@layout/fragment_country_details">
+        <action
+            android:id="@+id/action_countryDetails_self"
+            app:destination="@id/countryDetails"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/countryListFragment" />
+
+        <action
+            android:id="@+id/action_countryDetails_self2"
+            app:destination="@id/countryDetails"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/favoriteDetail" />
+
+        <action
+            android:id="@+id/action_countryDetails_to_country_holiday_weekends_details"
+            app:destination="@id/country_holiday_weekends_details"
+            app:enterAnim="@anim/slide_in_up"
+            app:exitAnim="@anim/slide_out_down"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/settings"
         android:name="com.log.worldholidays.fragmetns.settings.Settings"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/country_holiday_weekends_details"
+        android:name="com.log.worldholidays.view.country_holiday_weekends_details"
+        android:label="fragment_country_holiday_weekends_details"
+        tools:layout="@layout/fragment_country_holiday_weekends_details" />
+
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.log.worldholidays.services
+package com.log.worldholidays.services.Country
 
 import com.log.worldholidays.model.CountryDB
 import io.reactivex.rxjava3.core.Single

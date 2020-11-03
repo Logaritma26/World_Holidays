@@ -51,12 +51,16 @@ data class CountryDB(
     @ColumnInfo(name = "favorite")
     var favorite: Boolean = false,
 
-    ) {
+    @ColumnInfo(name = "population_int")
+    var population_int: Int?,
 
+    @ColumnInfo(name = "area_int")
+    var area_int: Int?,
+
+    ) {
 
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
-
 
 }
 
